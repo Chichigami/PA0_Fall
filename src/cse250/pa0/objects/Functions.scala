@@ -23,7 +23,7 @@ object Functions {
   }
 
   def genSeq(n: Int): Seq[Int] = {
-    val someSeq = Seq.fill(10)(12)
+    val someSeq : Seq[Int] = Seq(2,2,2,1)
     someSeq
   }
 
