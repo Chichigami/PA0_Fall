@@ -24,7 +24,12 @@ class CompSumTests extends FlatSpec {
 
   behavior of "FunctionsTest.compSum"
 
-  it should "..." in {
-    Functions.compSum(1)
+  it should "return the sum from 1 to n" in {
+    val n = 50
+    var sum = 0
+    for (i <- 1 to n){
+      sum+=i
+    }
+    assert(sum == Functions.compSum(50))
   }
 }

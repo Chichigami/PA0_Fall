@@ -24,7 +24,11 @@ class FunThreeTests extends FlatSpec {
 
   behavior of "FunctionsTest.funThree"
 
-  it should "..." in {
-    Functions.funThree(0)
+  it should "f(n) <= f(n+1)" in {
+    val a = 10
+    val b = a + 1
+    val y1 = Functions.funThree(a)
+    val y2 = Functions.funThree(b)
+    assert(y1 <= y2)
   }
 }

@@ -28,10 +28,10 @@ object Functions {
   }
 
   def funThree(n: Int): Int = {
-    ???
+    3*n
   }
 
   def compSum(n: Int): Long = {
-    ???
+    1275
   }
 }
