@@ -28,6 +28,7 @@ object Functions {
   }
 
   def funThree(n: Int): Int = {
+
     ???
   }
 
