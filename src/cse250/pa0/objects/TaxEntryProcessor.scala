@@ -29,7 +29,10 @@ object TaxEntryProcessor {
     val inputFile = scala.io.Source.fromFile(filename)
     // Note: lines is an iterator to the file. This is only valid as long as the file is open.
     //       Ensure you do not close the file prior to finishing the file usage.
-    val lines = inputFile.getLines()
+//    for (line <- inputFile.getLines()){
+//      println(line(0))
+//    }
+
 
     val outputFile = new BufferedWriter(new FileWriter( new File(filename + "-updated")))
 

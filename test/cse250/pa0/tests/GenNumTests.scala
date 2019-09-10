@@ -28,6 +28,6 @@ class GenNumTests extends FlatSpec {
     val n = 10
     assert(n >= 0 && n <= 1000)
     val someNum = Functions.genNum(n)
-    assert(someNum >= 0)
+    assert(someNum > 0)
   }
 }

@@ -9,8 +9,8 @@
  * http://creativecommons.org/licenses/by-nc-sa/4.0/.
  *
  * Submission author
- * UBIT:
- * Person#:
+ * UBIT: garyfeng
+ * Person#: 50242102
  *
  * Collaborators (include UBIT name of each, comma separated):
  * UBIT:
