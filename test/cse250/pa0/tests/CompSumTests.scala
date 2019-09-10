@@ -27,7 +27,7 @@ class CompSumTests extends FlatSpec {
   it should "return the sum from 1 to n" in {
     val n = 50
     assert(n >= 1 && n <= 50000)
-    val sum = (n*(n+1))/2
+    val sum = (n*(n+1))/2 //Googled how to get sum of a number from 1 to 50 and got a formula from Quora
     assert(sum == Functions.compSum(50))
   }
 }
