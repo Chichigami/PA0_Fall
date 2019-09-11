@@ -29,11 +29,17 @@ object TaxEntryProcessor {
     val inputFile = scala.io.Source.fromFile(filename)
     // Note: lines is an iterator to the file. This is only valid as long as the file is open.
     //       Ensure you do not close the file prior to finishing the file usage.
-//    for (line <- inputFile.getLines()){
-//      println(line(0))
-//    }
-
-
+    var count = -1
+    for (line <- inputFile.getLines) {
+      val cols = line.split(",").map(_.trim)
+      for (i <- cols) {
+        count += 1
+        if (i == "SBL"){
+          println(cols(count))
+          println(cols(2))
+        }
+      }
+    }
     val outputFile = new BufferedWriter(new FileWriter( new File(filename + "-updated")))
 
     // Without the '\n' character, all output will be written as one long line.
