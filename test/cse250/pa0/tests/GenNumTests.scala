@@ -24,10 +24,20 @@ class GenNumTests extends FlatSpec {
 
   behavior of "FunctionsTest.genNum"
 
-  it should "return a number from 0 to 1000" in {
-    val n = 10
-    assert(n >= 0 && n <= 1000)
-    val someNum = Functions.genNum(n)
+  it should "input should be 0 - 1000 and return a positive number" in {
+    val n1 = 10
+    assert(n1 >= 0 && n1 <= 1000)
+    val someNum = Functions.genNum(n1)
     assert(someNum > 0)
+  }
+
+  it should "return false when input < 0" in {
+    val n2 = -1
+    assert(n2 >= 0 && n2 <= 1000)
+  }
+
+  it should "return false when input > 1000" in {
+    val n3 = 1001
+    assert(n3 >= 0 && n3 <= 1000)
   }
 }

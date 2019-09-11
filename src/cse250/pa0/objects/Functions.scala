@@ -32,6 +32,6 @@ object Functions {
   }
 
   def compSum(n: Int): Long = {
-    1275
+    (n*(n+1))/2
   }
 }
