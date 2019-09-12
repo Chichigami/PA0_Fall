@@ -29,18 +29,25 @@ object TaxEntryProcessor {
     val inputFile = scala.io.Source.fromFile(filename)
     // Note: lines is an iterator to the file. This is only valid as long as the file is open.
     //       Ensure you do not close the file prior to finishing the file usage.
-    var count = -1
+    val outputFile = new BufferedWriter(new FileWriter( new File(filename + "-updated")))
+
+    val ommitedColumns: List[Int] = List(0,1,7,8,9,10,11,12,13,20,21,22,24,31,32,33,39,40,41)
     for (line <- inputFile.getLines) {
-      val cols = line.split(",").map(_.trim)
-      for (i <- cols) {
-        count += 1
-        if (i == "SBL"){
-          println(cols(count))
-          println(cols(2))
+      val columns = line.split(",")map (_.trim)
+      if (!columns(20).isEmpty) {
+        for (cell <- columns.indices) {
+          if (!ommitedColumns.contains(cell)) {//https://stackoverflow.com/questions/14267612/scala-check-if-element-is-present-in-a-list used contain function
+            if (cell == columns.length-1){
+              outputFile.write(columns(cell))
+            } else {
+              outputFile.write(columns(cell) + ",")
+            }
+          }
         }
+        outputFile.newLine()
       }
     }
-    val outputFile = new BufferedWriter(new FileWriter( new File(filename + "-updated")))
+
 
     // Without the '\n' character, all output will be written as one long line.
     // Process the lines.
