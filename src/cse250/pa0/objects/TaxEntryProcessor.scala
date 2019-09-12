@@ -9,8 +9,8 @@
  * http://creativecommons.org/licenses/by-nc-sa/4.0/.
  *
  * Submission author
- * UBIT:
- * Person#:
+ * UBIT: garyfeng
+ * Person#: 50242102
  *
  * Collaborators (include UBIT name of each, comma separated):
  * UBIT:
@@ -44,6 +44,7 @@ object TaxEntryProcessor {
             }
           }
         }
+        //need to make all columns 27
         outputFile.newLine()
       }
     }
@@ -55,6 +56,13 @@ object TaxEntryProcessor {
 
     // Close the files at the end.
     inputFile.close()
+    outputFile.close()
+
+    val someFile = scala.io.Source.fromFile("data/2017-2018_Assessment_Roll.csv-updated") //does every column have to be 27?
+    for (line <- someFile.getLines) {
+      val columns = line.split(",") map (_.trim)
+      println(columns.length)
+    }
     outputFile.close()
   }
 
