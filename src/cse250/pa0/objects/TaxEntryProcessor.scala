@@ -33,20 +33,27 @@ object TaxEntryProcessor {
 
     val ommitedColumns: List[Int] = List(0,1,7,8,9,10,11,12,13,20,21,22,24,31,32,33,39,40,41)
     for (line <- inputFile.getLines) {
-      val columns = line.split(",")map (_.trim)
+
+      val columns = line.split(",", -1)map(_.trim)
       if (!columns(20).isEmpty) {
         for (cell <- columns.indices) {
           if (!ommitedColumns.contains(cell)) {//https://stackoverflow.com/questions/14267612/scala-check-if-element-is-present-in-a-list used contain function
-            if (cell == columns.length-1){
+            if(columns(cell).startsWith("\"")){
+              columns(cell).replaceFirst("\"", "\"(")
+              if(columns(cell).endsWith("\"")){
+                columns(cell).replaceFirst("\"", "\")")
+              }
+            }
+            if (cell == columns.length - 1){
               outputFile.write(columns(cell))
             } else {
               outputFile.write(columns(cell) + ",")
             }
           }
         }
-        //need to make all columns 27
         outputFile.newLine()
       }
+
     }
 
 
@@ -58,12 +65,14 @@ object TaxEntryProcessor {
     inputFile.close()
     outputFile.close()
 
-    val someFile = scala.io.Source.fromFile("data/2017-2018_Assessment_Roll.csv-updated") //does every column have to be 27?
-    for (line <- someFile.getLines) {
-      val columns = line.split(",") map (_.trim)
-      println(columns.length)
-    }
-    outputFile.close()
+//    testing stuff prob should just use a test file
+//    val someFile = scala.io.Source.fromFile("data/2017-2018_Assessment_Roll.csv-updated") //does every column have to be 27?
+////    val someFile = scala.io.Source.fromFile("C:\\Users\\Gary Feng\\IdeaProjects\\PA0\\test\\cse250\\pa0\\tests\\correct.csv")
+//    for (line <- someFile.getLines) {
+//      val columns = line.split(",", -1) map (_.trim)
+//      println(columns.length)
+//    }
+//    outputFile.close()
   }
 
   def computeMostExpensiveEntry(filename: String): TaxEntry = {
