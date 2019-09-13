@@ -30,21 +30,14 @@ object TaxEntryProcessor {
     // Note: lines is an iterator to the file. This is only valid as long as the file is open.
     //       Ensure you do not close the file prior to finishing the file usage.
     val outputFile = new BufferedWriter(new FileWriter( new File(filename + "-updated")))
-
-    val ommitedColumns: List[Int] = List(0,1,7,8,9,10,11,12,13,20,21,22,24,31,32,33,39,40,41)
+    //fuck this fever
+    val ommitedColumns: List[Int] = List(0,1,7,8,9,10,11,12,13,20,21,22,24,31,32,33,39,40,41) //columns we don't want
     for (line <- inputFile.getLines) {
-
       val columns = line.split(",", -1)map(_.trim)
-      if (!columns(20).isEmpty) {
+      if (!columns(20).isEmpty) { //empty zip code
         for (cell <- columns.indices) {
           if (!ommitedColumns.contains(cell)) {//https://stackoverflow.com/questions/14267612/scala-check-if-element-is-present-in-a-list used contain function
-            if(columns(cell).startsWith("\"")){
-              columns(cell).replaceFirst("\"", "\"(")
-              if(columns(cell).endsWith("\"")){
-                columns(cell).replaceFirst("\"", "\")")
-              }
-            }
-            if (cell == columns.length - 1){
+            if (cell == columns.length -1){
               outputFile.write(columns(cell))
             } else {
               outputFile.write(columns(cell) + ",")
